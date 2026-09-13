@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevSnips · Launch OS</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236D4AFF'/><text x='50' y='68' font-size='60' fill='white' text-anchor='middle' font-family='serif'>D</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="scrim" id="sidebarScrim"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">D</div>
+      <div><b>DevSnips</b><span>Launch OS · Oct</span></div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="nav-label">Overview</div>
+      <a class="nav-item" href="#top" data-target="top">
+        <div class="nav-top"><span class="nav-num">◆</span><span class="nav-name">Dashboard</span></div>
+      </a>
+      <div class="nav-label" style="margin-top:8px">Phases</div>
+      <div class="nav-label" style="margin-top:8px">Reference</div>
+      <a class="nav-item" href="#timeline" data-target="timeline">
+        <div class="nav-top"><span class="nav-num">⏱</span><span class="nav-name">30-Day Plan</span></div>
+      </a>
+      <a class="nav-item" href="#gate" data-target="gate">
+        <div class="nav-top"><span class="nav-num">🏁</span><span class="nav-name">Readiness Gate</span></div>
+      </a>
+    </nav>
+    <div class="side-foot">
+      <div class="mini-stat"><span>Overall</span><b><span id="sidePct">0</span>%</b></div>
+      <div class="side-track"><div class="side-fill" id="sideFill"></div></div>
+      <button class="theme-btn" id="themeBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="themeLabel">Dark mode</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main" id="top">
+    <div class="mob-bar">
+      <button class="burger" id="burger"><span></span></button>
+      <div class="brand" style="padding:0;border:none">
+        <div class="brand-mark" style="width:30px;height:30px;font-size:17px;border-radius:9px">D</div>
+        <div><b>DevSnips</b><span>Launch OS</span></div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="glow a"></div>
+      <div class="glow b"></div>
+      <div>
+        <div class="eyebrow"><i></i> Pre-launch · Master Blueprint</div>
+        <h1>Ship a launch that<br><em>earns trust.</em></h1>
+        <p class="lede">The complete DevSnips October blueprint — positioning, catalog, CLI, AI-agent layer, documentation, QA and release discipline — distilled into one live dashboard.</p>
+        <div class="equation">
+          <span>Discoverability</span><span class="op">+</span>
+          <span>Reliable Install</span><span class="op">+</span>
+          <span>Great Docs</span><span class="op">+</span>
+          <span>Agent Instructions</span><span class="op">+</span>
+          <span>Verified Quality</span><span class="op">=</span>
+          <span class="res">Trust</span>
+        </div>
+      </div>
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 120 120">
+          <circle class="bg" cx="60" cy="60" r="52"/>
+          <circle class="fg" id="ringFg" cx="60" cy="60" r="52"/>
+        </svg>
+        <div class="ring-center">
+          <b id="ringPct">0%</b>
+          <small>Complete</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><small>Total tasks</small><b id="sTotal">0</b></div>
+      <div class="stat"><small>Completed</small><b id="sDone">0</b></div>
+      <div class="stat"><small>P0 remaining</small><b id="sP0">0</b></div>
+      <div class="stat"><small>Notes</small><b id="sNotes">0</b></div>
+    </section>
+
+    <div class="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="text" id="search" placeholder="Search tasks…">
+      </div>
+      <div class="chips" id="chips">
+        <button class="chip on" data-filter="all">All</button>
+        <button class="chip p0" data-filter="P0">P0</button>
+        <button class="chip p1" data-filter="P1">P1</button>
+        <button class="chip p2" data-filter="P2">P2</button>
+        <button class="chip" data-filter="todo">To do</button>
+        <button class="chip" data-filter="done">Done</button>
+        <button class="chip" data-filter="notes">Notes</button>
+      </div>
+      <div class="tool-actions">
+        <div class="sync" id="sync"><span class="sync-dot"></span><span class="sync-text">Saved</span></div>
+        <button class="tbtn" id="dataBtn">Data</button>
+        <button class="tbtn primary" id="exportBtn">Export</button>
+      </div>
+    </div>
+
+    <div id="phases"></div>
+
+    <section class="timeline reveal" id="timeline">
+      <div class="sec-title"><h2>Final 30-Day Execution Plan</h2><span>Days 1 → 30</span></div>
+      <div class="tl" id="tl"></div>
+    </section>
+
+    <section class="gate reveal" id="gate">
+      <h2>Launch Readiness Gate</h2>
+      <p class="sub">DevSnips is <b>not ready</b> until every one of these is true. This is the line between “looks launched” and “behaves like a mature developer ecosystem.”</p>
+      <div class="gate-grid" id="gateGrid"></div>
+      <div class="gate-foot">
+        <p>Build once · Document everything · Test everything · Version everything</p>
+        <div class="gate-pct" id="gatePct">0%</div>
+      </div>
+    </section>
+
+    <footer>
+      <div><b>DEVSNIPS</b> — October Launch Blueprint</div>
+      <div>Status markers: <b>P0</b> must ship · <b>P1</b> differentiator · <b>P2</b> post-launch</div>
+    </footer>
+  </main>
+</div>
+
+<!-- ============ DATA DRAWER ============ -->
+<aside class="drawer" id="drawer">
+  <header class="drawer-head">
+    <h2>Database</h2>
+    <button class="drawer-close" id="drawerClose">×</button>
+  </header>
+  <div class="drawer-tabs" id="drawerTabs">
+    <button data-tab="activity" class="on">Activity</button>
+    <button data-tab="notes">Notes</button>
+    <button data-tab="data">Storage</button>
+  </div>
+  <div class="drawer-body">
+    <div class="panel on" data-panel="activity" id="activityPanel"></div>
+    <div class="panel" data-panel="notes" id="notesPanel"></div>
+    <div class="panel" data-panel="data" id="dataPanel"></div>
+  </div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
